@@ -1,0 +1,111 @@
+.login__page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 1.5rem;
+}
+
+.login__users {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  gap: 2rem;
+  position: relative;
+}
+
+.login__user {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.login__avatar {
+  width: 7rem;
+  filter: grayscale(60%);
+  border-radius: 100%;
+  border: 1.5px solid var(--eerie-black);
+  cursor: pointer;
+  box-shadow: 4px 4px 2px var(--dim-gray);
+}
+
+.login__arrow {
+  color: var(--pale-silver);
+  font-size: 1.8rem;
+  position: absolute;
+  left: -5.5rem;
+  top: 2.7rem;
+  cursor: pointer;
+}
+
+.login__input {
+  height: 2rem;
+  position: relative;
+}
+
+.login__input button {
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  right: 5px;
+  top: 0.75rem;
+  color: var(--eerie-black);
+  animation-name: appear;
+  animation-duration: 1s;
+}
+
+.login__input input {
+  border-radius: 1.5rem;
+  outline: none;
+  padding: 0 1rem;
+  letter-spacing: 2pt;
+  border: 1.5px solid var(--eerie-black);
+  background-color: var(--tumbleweed);
+  height: 2.5rem;
+  width: 17rem;
+  text-align: center;
+  box-shadow: 3px 3px 2px var(--eerie-black);
+  animation-name: slideOpen;
+  animation-duration: 1s;
+  font-size: 1rem;
+}
+
+.login__error {
+  color: var(--mandarin);
+  font-style: italic;
+  margin-top: 0.8rem;
+}
+
+@keyframes slideOpen {
+  0% {
+    opacity: 0;
+    width: 0rem;
+    transform: scaleX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+  75% {
+    width: 19rem;
+  }
+  100% {
+    width: 17rem;
+  }
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}

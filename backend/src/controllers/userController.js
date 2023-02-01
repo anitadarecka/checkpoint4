@@ -32,9 +32,9 @@ const userController = {
       .catch((err) => next(err));
   },
   getOneUser: (req, res, next) => {
-    const email = req.userEmail;
+    const id = req.userId;
     userModel
-      .findUserByEmail(email)
+      .findUserById(id)
       .then((result) => {
         if (result.length === 0) {
           res.sendStatus(404);
@@ -83,7 +83,7 @@ const userController = {
               .status(200)
               .send({ id, username, firstname, lastname, msg: "Welcome!" });
           } else {
-            res.status(401).send({ error: "Invalid password." });
+            res.status(401).send({ error: "Wrong password!" });
           }
         }
       })

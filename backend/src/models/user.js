@@ -10,7 +10,7 @@ const findAllUsers = () => {
   return db
     .promise()
     .query(
-      "SELECT u.id, u.username, u.firstname, u.lastname, r.type as role from user as u join role as r on r.id = u.role_id"
+      "SELECT u.id, u.username, u.firstname, u.lastname, u.avatar, r.type as role from user as u join role as r on r.id = u.role_id"
     )
     .then(([res]) => res);
 };
@@ -32,9 +32,10 @@ const findUserByUsername = (username) => {
 const findUserById = (id) => {
   return db
     .promise()
-    .query("SELECT firstname, lastname, email FROM user where id = ?", [
-      Number(id),
-    ])
+    .query(
+      "SELECT u.username, u.firstname, u.lastname, u.email, u.avatar, r.type as role FROM user as u join role as r on r.id = u.role_id where u.id = ?",
+      [Number(id)]
+    )
     .then(([res]) => res);
 };
 const findRoleByUser = (id) => {
