@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -13,10 +14,11 @@ import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import User from "../../components/User";
 
 export default function Login() {
+  const navigate = useNavigate();
   const [users, setUsers] = useState([]);
   const [showPassword, setShowPassword] = useState(false);
   const [payload, setPayload] = useState({ username: "", password: "" });
-  const [error, setError] = useState();
+  const [response, setResponse] = useState({ msg: "", error: "" });
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/users/")
@@ -24,9 +26,21 @@ export default function Login() {
   }, []);
   const handleLogin = () => {
     axios
-      .post("http://localhost:8000/api/users/login", payload)
-      .then((result) => result.data.msg)
-      .catch((err) => setError(err.response.data.error));
+      .post("http://localhost:8000/api/users/login", payload, {
+        withCredentials: true,
+      })
+      .then((result) => {
+        if (result.status === 200) {
+          navigate("charging");
+        }
+      })
+      .catch((err) =>
+        setResponse({ ...response, error: err.response.data.error })
+      );
+  };
+  const handleArrow = () => {
+    setPayload({ username: "", password: "" });
+    setResponse({ msg: "", error: "" });
   };
   return (
     <div className="login__page">
@@ -35,13 +49,13 @@ export default function Login() {
           <div
             className="login__arrow"
             role="presentation"
-            onClick={() => setPayload({ username: "", password: "" })}
+            onClick={handleArrow}
           >
             <FontAwesomeIcon icon={faArrowAltCircleLeft} />
           </div>
         )}
-        <AnimatePresence>
-          <LayoutGroup>
+        <LayoutGroup>
+          <AnimatePresence>
             {users &&
               users
                 .filter(
@@ -56,8 +70,8 @@ export default function Login() {
                     setPayload={setPayload}
                   />
                 ))}
-          </LayoutGroup>
-        </AnimatePresence>
+          </AnimatePresence>
+        </LayoutGroup>
       </div>
       <div
         className="login__input"
@@ -90,16 +104,17 @@ export default function Login() {
             </button>
           </>
         )}
-        {error && (
+        {response.error !== "" && (
           <motion.div
             className="login__error"
             initial={{ x: 0 }}
             animate={{ x: [0, 4, 0] }}
             transition={{ repeat: 3, type: "spring", duration: 0.1 }}
           >
-            {error}
+            {response.error}
           </motion.div>
         )}
+        {response.msg !== "" && <div>{response.msg}</div>}
       </div>
       <div className="footer">
         <span style={{ fontSize: "1.3rem" }}>&#xA9;</span> 2023 anita darecka --{" "}

@@ -1,0 +1,50 @@
+.home__navbar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  background-color: var(--tumbleweed);
+  border-bottom: 2px solid var(--eerie-black);
+  padding: 0 10px;
+}
+
+.navbar__avatar {
+  height: 1.5rem;
+}
+
+.home__navbar img {
+  width: 1.4rem;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar__menu {
+  position: absolute;
+  top: 2.5rem;
+  width: 10rem;
+  height: auto;
+  background-color: var(--tumbleweed);
+  border: 1.5px solid var(--eerie-black);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* transform-origin: top;
+  animation-name: slideDown;
+  animation-duration: 0.3s; */
+  padding: 10px 0;
+  z-index: 1000;
+}
+
+.menu__item {
+  padding: 2px 5px;
+}
+
+@keyframes slideDown {
+  0% {
+    transform: scaleY(0);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}

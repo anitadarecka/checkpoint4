@@ -79,6 +79,87 @@
   margin-top: 0.8rem;
 }
 
+.login__charging {
+  width: 250px;
+  height: 1rem;
+  border-radius: 1rem;
+  border: 1.5px solid var(--eerie-black);
+  box-shadow: 3px 3px 2px var(--eerie-black);
+  background-color: var(--linen);
+  position: relative;
+  overflow: hidden;
+}
+
+.login__charging::before {
+  content: "";
+  width: 250px;
+  height: 1rem;
+  position: absolute;
+  background-color: var(--mandarin);
+  left: 0;
+  transform: translateX(0px);
+  animation-name: charging;
+  animation-duration: 8s;
+  animation-timing-function: cubic-bezier(0.1, 0.59, 0, 0.96);
+}
+
+@keyframes charging {
+  0% {
+    transform: translateX(-250px);
+  }
+
+  20% {
+    transform: translateX(-200px);
+  }
+  40% {
+    transform: translateX(-170px);
+  }
+
+  50% {
+    transform: translateX(-150px);
+  }
+
+  60% {
+    transform: translateX(-120px);
+  }
+
+  70% {
+    transform: translateX(-110px);
+  }
+
+  75% {
+    transform: translateX(-100px);
+  }
+  85% {
+    transform: translateX(-30px);
+  }
+  90% {
+    transform: translateX(-15px);
+  }
+  94% {
+    transform: translateX(-15px);
+  }
+  95% {
+    transform: translateX(-15px);
+  }
+  96% {
+    transform: translateX(-10px);
+  }
+  97% {
+    transform: translateX(-10px);
+  }
+  98% {
+    transform: translateX(-5px);
+  }
+  99% {
+    transform: translateX(-5px);
+  }
+
+  100% {
+    transform: translateX(0px);
+  }
+}
+
 @keyframes slideOpen {
   0% {
     opacity: 0;

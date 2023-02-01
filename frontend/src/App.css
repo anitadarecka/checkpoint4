@@ -8,6 +8,7 @@
   --bone: #dfd1c0;
   --linen: #ece2dd;
   --tumbleweed: #eeb399;
+  --dark-salmon: #ef9b77;
   --mandarin: #ef8354;
 }
 
@@ -62,4 +63,8 @@ a:hover {
 
 a:active {
   text-decoration: none;
+}
+
+div[role="presentation"] {
+  cursor: pointer;
 }
