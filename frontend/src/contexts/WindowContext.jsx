@@ -23,7 +23,11 @@ export function WindowProvider({ children }) {
   //     getRandomPosition(screenSize.width, screenSize.height);
   //   }
   // }, [screenSize.width]);
-
+  const [showWindow, setShowWindow] = useState({
+    About: { show: true },
+    Music: { show: true },
+    Notes: { show: true },
+  });
   return (
     <Provider
       value={{
@@ -31,6 +35,8 @@ export function WindowProvider({ children }) {
         getScreenSize,
         getRandomPosition,
         screenSize,
+        showWindow,
+        setShowWindow,
       }}
     >
       {children}

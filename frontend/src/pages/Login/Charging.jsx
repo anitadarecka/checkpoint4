@@ -6,7 +6,7 @@ export default function Charging() {
   useEffect(() => {
     setTimeout(() => {
       navigate("/home");
-    }, 500);
+    }, 5500);
   }, []);
   return (
     <div className="login__page">

@@ -39,6 +39,7 @@ export default function Home() {
       {windowItems &&
         windowItems.map((el, index) => {
           const [window, setWindow] = useState(el);
+          // const { content } = el;
           return (
             window.show && (
               <Draggable

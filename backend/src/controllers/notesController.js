@@ -21,9 +21,10 @@ const notesController = {
       .catch((err) => next(err));
   },
   editNote: (req, res, next) => {
+    const noteData = req.body;
     const { id } = req.params;
     notesModel
-      .editNote(id)
+      .editNote(noteData, id)
       .then((result) => res.status(200).send(result))
       .catch((err) => next(err));
   },

@@ -2,19 +2,14 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import user from "../../assets/user2.png";
-import navbarItems from "./navbarItems";
 import "./Navbar.css";
+import NavbarMenu from "./NavbarMenu";
 
 export default function Navbar({ me }) {
   const [showMenu, setShowMenu] = useState(false);
   const [timer, setTimer] = useState(0);
   const { setUser } = useAuth();
-  const handle = (item, action) => {
-    action();
-    if (item === "Logout") {
-      setUser({ data: null });
-    }
-  };
+
   const options = {
     weekday: "short",
     day: "numeric",
@@ -40,18 +35,7 @@ export default function Navbar({ me }) {
       <div>{newDate}</div>
       {showMenu && (
         <div className="navbar__menu">
-          {navbarItems
-            .filter((el) => me.role === "admin" || el.permissions === me.role)
-            .map((el) => (
-              <div
-                key={el.id}
-                role="presentation"
-                className="menu__item"
-                onClick={() => handle(el.item, el.handle)}
-              >
-                {el.item}
-              </div>
-            ))}
+          <NavbarMenu me={me} setUser={setUser} />
         </div>
       )}
     </div>

@@ -10,7 +10,7 @@ const getNotes = (id) => {
   return db
     .promise()
     .query(
-      "SELECT n.content, n.timestamp from notes as n join user as u on u.id = n.user_id where u.id = ?",
+      "SELECT n.id, n.content, n.timestamp from notes as n join user as u on u.id = n.user_id where u.id = ?",
       [Number(id)]
     )
     .then(([res]) => res);
@@ -19,7 +19,7 @@ const getNotes = (id) => {
 const editNote = (payload, id) => {
   return db
     .promise()
-    .query("UPDATE notes SET ? where id = ?", [payload, Number(id)])
+    .query("UPDATE notes as n SET ? where n.id = ?", [payload, Number(id)])
     .then(([res]) => res);
 };
 

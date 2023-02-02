@@ -30,6 +30,7 @@
   width: inherit;
   height: 20%;
   background-color: transparent;
+  border-bottom: 1px solid var(--dark-lava);
 }
 
 .notes__input textarea {
@@ -39,4 +40,50 @@
   border: none;
   outline: none;
   resize: none;
+}
+
+.notes__list {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  padding-top: 5px;
+}
+
+.note__item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.note__content {
+  width: 90%;
+}
+
+.note__timestamp {
+  font-size: 0.7rem;
+  color: var(--dim-gray);
+}
+
+.note__delete {
+  position: absolute;
+  right: 10px;
+  top: 2px;
+  color: var(--dark-lava);
+}
+
+.note__edit {
+  position: absolute;
+  right: 35px;
+  top: 2px;
+  color: var(--dark-lava);
+}
+
+.note__item textarea {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-style: italic;
 }

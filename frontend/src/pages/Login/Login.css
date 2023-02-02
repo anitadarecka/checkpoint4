@@ -109,8 +109,7 @@
   left: 0;
   transform: translateX(0px);
   animation-name: charging;
-  animation-duration: 0s;
-  /* change back !!!!! */
+  animation-duration: 5s;
   animation-timing-function: cubic-bezier(0.1, 0.59, 0, 0.96);
 }
 

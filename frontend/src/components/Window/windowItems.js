@@ -16,14 +16,14 @@ const windowItems = [
   {
     id: 3,
     content: "Leave a comment",
-    show: true,
+    show: false,
     left: 500,
     top: 350,
   },
   {
     id: 4,
     content: "Music",
-    show: false,
+    show: true,
     left: 450,
     top: 200,
   },
