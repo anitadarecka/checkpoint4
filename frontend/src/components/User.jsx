@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import avatar from "../assets/avatar_basic.png";
+import crown from "../assets/crown.png";
 
 export default function User({ username, payload, setPayload }) {
   const handleClick = () => {
@@ -22,6 +23,9 @@ export default function User({ username, payload, setPayload }) {
       }}
     >
       <img src={avatar} alt="avatar" className="login__avatar" />
+      {username === "admin" && (
+        <img src={crown} alt="crown" className="avatar__crown" />
+      )}
       <p>{username}</p>
     </motion.div>
   );

@@ -29,7 +29,17 @@
   border-radius: 100%;
   border: 1.5px solid var(--eerie-black);
   cursor: pointer;
-  box-shadow: 4px 4px 2px var(--dim-gray);
+  box-shadow: 3px 3px 2px var(--eerie-black);
+  position: relative;
+}
+
+.avatar__crown {
+  width: 4rem;
+  transform: rotate(-20deg);
+  position: absolute;
+  top: -0.5rem;
+  left: 1rem;
+  filter: sepia(90%) brightness(1.4) saturate(1.5);
 }
 
 .login__arrow {
@@ -99,7 +109,8 @@
   left: 0;
   transform: translateX(0px);
   animation-name: charging;
-  animation-duration: 8s;
+  animation-duration: 0s;
+  /* change back !!!!! */
   animation-timing-function: cubic-bezier(0.1, 0.59, 0, 0.96);
 }
 

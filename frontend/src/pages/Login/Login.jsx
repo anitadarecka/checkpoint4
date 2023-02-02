@@ -7,10 +7,9 @@ import {
   faEye,
   faEyeSlash,
   faArrowAltCircleLeft,
-  faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import { useAuth } from "../../contexts/AuthContext";
 import User from "../../components/User";
 
 export default function Login() {
@@ -19,11 +18,16 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [payload, setPayload] = useState({ username: "", password: "" });
   const [response, setResponse] = useState({ msg: "", error: "" });
+  const { login } = useAuth();
   useEffect(() => {
     axios
       .get("http://localhost:8000/api/users/")
       .then((res) => setUsers(res.data));
   }, []);
+  const handleChange = (e) => {
+    setPayload({ ...payload, password: e.target.value });
+    setResponse({ msg: "", error: "" });
+  };
   const handleLogin = () => {
     axios
       .post("http://localhost:8000/api/users/login", payload, {
@@ -31,7 +35,8 @@ export default function Login() {
       })
       .then((result) => {
         if (result.status === 200) {
-          navigate("charging");
+          login(result.data);
+          navigate("/charging");
         }
       })
       .catch((err) =>
@@ -88,9 +93,7 @@ export default function Login() {
               type={showPassword ? "text" : "password"}
               name="password"
               value={payload.password}
-              onChange={(e) =>
-                setPayload({ ...payload, password: e.target.value })
-              }
+              onChange={(e) => handleChange(e)}
             />
             <button
               type="button"
@@ -115,13 +118,6 @@ export default function Login() {
           </motion.div>
         )}
         {response.msg !== "" && <div>{response.msg}</div>}
-      </div>
-      <div className="footer">
-        <span style={{ fontSize: "1.3rem" }}>&#xA9;</span> 2023 anita darecka --{" "}
-        <a href="mailto:anitadarecka@gmail.com">
-          contact <FontAwesomeIcon icon={faEnvelope} />
-        </a>
-        &nbsp;all rights reserved.
       </div>
     </div>
   );

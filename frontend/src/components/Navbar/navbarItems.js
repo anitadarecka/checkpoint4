@@ -1,18 +1,44 @@
+import axios from "axios";
+
 const navbarItems = [
   {
     id: 1,
     item: "About",
-    link: "",
+    navigate: "",
+    permissions: "guest",
   },
   {
     id: 2,
     item: "Settings",
-    link: "",
+    navigate: "",
+    permissions: "admin",
   },
   {
     id: 3,
+    item: "Add user",
+    navigate: "",
+    permissions: "admin",
+  },
+  {
+    id: 4,
+    item: "Delete user",
+    navigate: "",
+    permissions: "guest",
+  },
+  {
+    id: 5,
     item: "Logout",
-    link: "",
+    navigate: "/",
+    permissions: "guest",
+    handle: () => {
+      axios
+        .get("http://localhost:8000/api/users/logout", {
+          withCredentials: true,
+        })
+        .then(() => {
+          window.localStorage.removeItem("user");
+        });
+    },
   },
 ];
 

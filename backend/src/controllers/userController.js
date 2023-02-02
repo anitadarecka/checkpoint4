@@ -45,16 +45,6 @@ const userController = {
       .catch((err) => next(err));
   },
 
-  // getRoleByUser: (req, res, next) => {
-  //   const id = req.userId;
-  //   userModel
-  //     .findRoleByUser(id)
-  //     .then((result) => {
-  //       res.status(200).send(result);
-  //     })
-  //     .catch((err) => next(err));
-  // },
-
   userLogin: (req, res, next) => {
     const { username, password } = req.body;
     userModel

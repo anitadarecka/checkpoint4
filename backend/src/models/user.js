@@ -56,7 +56,10 @@ const updateUser = (payload, id) => {
 };
 
 const deleteUser = (id) => {
-  return db.promise().query("DELETE FROM user WHERE id = ?", [Number(id)]);
+  return db
+    .promise()
+    .query("DELETE FROM user WHERE id = ?", [Number(id)])
+    .then(([res]) => res);
 };
 
 module.exports = {
