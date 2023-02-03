@@ -13,7 +13,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
+  gap: 7px;
   height: 1.5rem;
 }
 
@@ -40,6 +40,20 @@
   z-index: 1000;
   border-radius: 5px;
   box-shadow: 2px 2px 1px var(--dark-lava);
+}
+
+.navbar__left {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 7px;
+}
+
+.navbar__right {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
 }
 
 .menu__item {

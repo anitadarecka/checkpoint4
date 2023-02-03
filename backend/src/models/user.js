@@ -33,7 +33,7 @@ const findUserById = (id) => {
   return db
     .promise()
     .query(
-      "SELECT u.username, u.firstname, u.lastname, u.email, u.avatar, r.type as role FROM user as u join role as r on r.id = u.role_id where u.id = ?",
+      "SELECT u.id, u.username, u.firstname, u.lastname, u.email, u.avatar, r.type as role FROM user as u join role as r on r.id = u.role_id where u.id = ?",
       [Number(id)]
     )
     .then(([res]) => res);

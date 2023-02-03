@@ -2,10 +2,11 @@ import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/AuthContext";
 import user from "../../assets/user2.png";
+import battery from "../../assets/battery.png";
 import "./Navbar.css";
 import NavbarMenu from "./NavbarMenu";
 
-export default function Navbar({ me }) {
+export default function Navbar({ me, setShowPopup }) {
   const [showMenu, setShowMenu] = useState(false);
   const [timer, setTimer] = useState(0);
   const { setUser } = useAuth();
@@ -25,17 +26,22 @@ export default function Navbar({ me }) {
   }, [timer]);
   return (
     <div className="home__navbar">
-      <div
-        className="navbar__user"
-        role="presentation"
-        onClick={() => setShowMenu(!showMenu)}
-      >
-        <img src={user} alt="user" /> {me.firstname}
+      <div className="navbar__left">
+        <div
+          className="navbar__user"
+          role="presentation"
+          onClick={() => setShowMenu(!showMenu)}
+        >
+          <img src={user} alt="user" /> {me.firstname}
+        </div>
       </div>
-      <div>{newDate}</div>
+      <div className="navbar__right">
+        <img src={battery} alt="battery" />
+        {newDate}
+      </div>
       {showMenu && (
         <div className="navbar__menu">
-          <NavbarMenu me={me} setUser={setUser} />
+          <NavbarMenu me={me} setUser={setUser} setShowPopup={setShowPopup} />
         </div>
       )}
     </div>
@@ -51,4 +57,5 @@ Navbar.propTypes = {
     email: PropTypes.string.isRequired,
     role: PropTypes.string.isRequired,
   }).isRequired,
+  setShowPopup: PropTypes.func.isRequired,
 };

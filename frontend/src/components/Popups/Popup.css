@@ -1,0 +1,46 @@
+.popup__window {
+  width: 35vw;
+  height: 25vh;
+  border: 1.5px solid var(--eerie-black);
+  border-radius: 7px;
+  background-color: var(--linen);
+  box-shadow: 3px 3px 1px var(--dark-lava);
+  position: absolute;
+  left: 20rem;
+  top: 15rem;
+  z-index: 1001;
+}
+
+.popup__window .window__navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  border-radius: 5px 5px 0 0;
+  background-color: var(--mandarin);
+  border-bottom: 1.5px solid var(--dark-lava);
+  padding: 0 10px;
+}
+
+.popup__window .window__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: auto;
+  height: calc(25vh - 2rem);
+}
+
+.popup__buttons {
+  display: flex;
+  gap: 20px;
+}
+
+.popup__window button {
+  background-color: transparent;
+  border: 1.5px solid var(--eerie-black);
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px var(--dark-lava);
+  height: 2rem;
+  font-size: 0.9rem;
+}

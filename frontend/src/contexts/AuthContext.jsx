@@ -30,7 +30,7 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (user.data) {
       window.localStorage.setItem("user", JSON.stringify(user.data));
-      navigate("/home");
+      // navigate("/home");
     }
   }, [user]);
 

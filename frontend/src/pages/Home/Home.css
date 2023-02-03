@@ -1,0 +1,24 @@
+.home__icons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 5rem;
+  gap: 5px;
+  font-weight: bold;
+}
+
+.home__icon {
+  width: 4rem;
+}
+
+.music {
+  left: 80px;
+  top: 170px;
+}
+
+.notes {
+  left: 50px;
+  top: 500px;
+}

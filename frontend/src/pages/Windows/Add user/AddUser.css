@@ -1,0 +1,34 @@
+.adduser__inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.adduser__input {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+  gap: 5px;
+}
+
+.adduser__inputs input {
+  background-color: transparent;
+  border: 1.5px solid var(--eerie-black);
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px var(--dark-lava);
+  height: 2rem;
+  font-size: 0.9rem;
+  outline: none;
+  padding: 0 0.8rem;
+}
+
+.adduser__inputs button {
+  background-color: transparent;
+  border: 1.5px solid var(--eerie-black);
+  border-radius: 5px;
+  box-shadow: 2px 2px 1px var(--dark-lava);
+  height: 2rem;
+  font-size: 0.9rem;
+  width: 30%;
+}

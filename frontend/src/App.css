@@ -73,3 +73,8 @@ a:active {
 div[role="presentation"] {
   cursor: pointer;
 }
+
+button,
+input {
+  font-family: "Roboto Mono", monospace;
+}

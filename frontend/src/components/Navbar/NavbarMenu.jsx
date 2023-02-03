@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import axios from "axios";
+import { useWindow } from "../../contexts/WindowContext";
 
-export default function NavbarMenu({ me, setUser }) {
+export default function NavbarMenu({ me, setUser, setShowPopup }) {
+  const { setShowWindow, showWindow } = useWindow();
   const navbarItems = [
     {
       id: 1,
@@ -11,21 +13,29 @@ export default function NavbarMenu({ me, setUser }) {
     },
     {
       id: 2,
-      item: "Edit user",
+      item: "Edit_user",
       navigate: "",
       permissions: "guest",
     },
     {
       id: 4,
-      item: "Add user",
+      item: "Add_user",
       navigate: "",
       permissions: "admin",
+      handle: () =>
+        setShowWindow({
+          ...showWindow,
+          Add_user: { show: true },
+        }),
     },
     {
       id: 5,
-      item: "Delete user",
+      item: "Delete_user",
       navigate: "",
       permissions: "guest",
+      handle: () => {
+        setShowPopup(true);
+      },
     },
     {
       id: 3,
@@ -78,4 +88,5 @@ NavbarMenu.propTypes = {
     role: PropTypes.string.isRequired,
   }).isRequired,
   setUser: PropTypes.func.isRequired,
+  setShowPopup: PropTypes.func.isRequired,
 };

@@ -25,8 +25,9 @@ export function WindowProvider({ children }) {
   // }, [screenSize.width]);
   const [showWindow, setShowWindow] = useState({
     About: { show: true },
-    Music: { show: true },
-    Notes: { show: true },
+    Music: { show: false },
+    Notes: { show: false },
+    Add_user: { show: false },
   });
   return (
     <Provider

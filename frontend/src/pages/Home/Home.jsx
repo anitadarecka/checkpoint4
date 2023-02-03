@@ -7,11 +7,17 @@ import "./Home.css";
 import windowItems from "../../components/Window/windowItems";
 import Navbar from "../../components/Navbar/Navbar";
 import Window from "../../components/Window/Window";
+import music from "../../assets/vinyl.png";
+import notes from "../../assets/notes.png";
+import Popup from "../../components/Popups/Popup";
+import { useWindow } from "../../contexts/WindowContext";
 
 export default function Home() {
   const { user } = useAuth();
   const [me, setMe] = useState([]);
   const navigate = useNavigate();
+  const [showPopup, setShowPopup] = useState(false);
+  const { showWindow, setShowWindow } = useWindow();
   useEffect(() => {
     if (user.data) {
       axios
@@ -35,13 +41,43 @@ export default function Home() {
   };
   return (
     <div className="home__page">
-      {me && <Navbar me={me} />}
+      <Draggable>
+        <div
+          className="home__icons music"
+          role="presentation"
+          onClick={() =>
+            setShowWindow({
+              ...showWindow,
+              Music: { show: true },
+            })
+          }
+        >
+          <img src={music} alt="music" className="home__icon" />
+          My Music
+        </div>
+      </Draggable>
+      <Draggable>
+        <div
+          className="home__icons notes"
+          role="presentation"
+          onClick={() =>
+            setShowWindow({
+              ...showWindow,
+              Notes: { show: true },
+            })
+          }
+        >
+          <img src={notes} alt="notes" className="home__icon" />
+          Notes
+        </div>
+      </Draggable>
+      {me && <Navbar me={me} setShowPopup={setShowPopup} />}
       {windowItems &&
         windowItems.map((el, index) => {
           const [window, setWindow] = useState(el);
-          // const { content } = el;
-          return (
-            window.show && (
+          const { content } = el;
+          if (showWindow[content] !== undefined && showWindow[content].show) {
+            return (
               <Draggable
                 key={el.id}
                 onStart={() => handleZindex(refs[el.id - 1].current)}
@@ -61,10 +97,22 @@ export default function Home() {
                   />
                 </div>
               </Draggable>
-            )
-          );
+            );
+          }
+          return false;
         })}
-      {/* <div className="home__content"></div> */}
+      {showPopup && (
+        <Draggable>
+          <div className="popup__window">
+            <Popup
+              content="Delete user"
+              setShowPopup={setShowPopup}
+              role={me.role}
+              id={me.id}
+            />
+          </div>
+        </Draggable>
+      )}
     </div>
   );
 }

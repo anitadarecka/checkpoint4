@@ -17,6 +17,6 @@ userRouter.post("/login", userLogin);
 userRouter.get("/logout", authorization, userLogout);
 userRouter.get("/", getAllUsers);
 userRouter.get("/me", authorization, getOneUser);
-userRouter.delete("/:id", authorization, deleteUser);
+userRouter.delete("/:id", deleteUser);
 
 module.exports = userRouter;
