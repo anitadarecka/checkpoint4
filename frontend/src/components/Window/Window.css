@@ -1,0 +1,89 @@
+.window__container {
+  width: 35vw;
+  height: 45vh;
+  border: 1.5px solid var(--eerie-black);
+  border-radius: 7px;
+  background-color: var(--linen);
+  box-shadow: 3px 3px 1px var(--dark-lava);
+  position: absolute;
+}
+
+.window__navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 2rem;
+  border-radius: 5px 5px 0 0;
+  background-color: var(--tumbleweed);
+  border-bottom: 1.5px solid var(--dark-lava);
+  padding: 0 10px;
+}
+
+.window__content {
+  overflow: auto;
+  height: calc(45vh - 2rem);
+  padding: 10px;
+  text-align: left !important;
+}
+
+.notes__input {
+  width: inherit;
+  height: 20%;
+  background-color: transparent;
+  border-bottom: 1px solid var(--dark-lava);
+}
+
+.notes__input textarea {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+}
+
+.notes__list {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 10px;
+  padding-top: 5px;
+}
+
+.note__item {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.note__content {
+  width: 90%;
+}
+
+.note__timestamp {
+  font-size: 0.7rem;
+  color: var(--dim-gray);
+}
+
+.note__delete {
+  position: absolute;
+  right: 10px;
+  top: 2px;
+  color: var(--dark-lava);
+}
+
+.note__edit {
+  position: absolute;
+  right: 35px;
+  top: 2px;
+  color: var(--dark-lava);
+}
+
+.note__item textarea {
+  width: 100%;
+  height: 100%;
+  background-color: transparent;
+  border: none;
+  outline: none;
+  resize: none;
+  font-style: italic;
+}

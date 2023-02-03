@@ -1,0 +1,11 @@
+autant que admin je veux pourvoir ajouter et supprimer des comptes
+
+autant que admin je veux avoir les permissions pour accéder à toutes les fonctionnalités 
+
+autant que user je veux pouvoir accéder à fonctionnalités essentielles
+
+autant que user je veux pouvoir créer, afficher, modifier et supprimer des notes 
+
+autant que user je veux pouvoir supprimer mon compte
+
+autant que user je veux pouvoir creer mes playlists de musique
