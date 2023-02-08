@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../../services/api";
 import Note from "./Note";
 
 export default function Notes({ content }) {
@@ -14,8 +14,8 @@ export default function Notes({ content }) {
     setCurrentNote({ content: e.target.value, timestamp: time });
   };
   const getNotes = () => {
-    axios
-      .get("http://localhost:8000/api/notes", { withCredentials: true })
+    api
+      .get("/notes", { withCredentials: true })
       .then((res) => setNotesList(res.data));
   };
   useEffect(() => {
@@ -24,8 +24,8 @@ export default function Notes({ content }) {
     }
   }, []);
   const addNote = () => {
-    axios
-      .post("http://localhost:8000/api/notes/new", currentNote, {
+    api
+      .post("/notes/new", currentNote, {
         withCredentials: true,
       })
       .then((res) => res)

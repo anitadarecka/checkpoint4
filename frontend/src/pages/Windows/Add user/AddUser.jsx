@@ -1,7 +1,7 @@
 import { useState } from "react";
-import axios from "axios";
 import "./AddUser.css";
 import { useWindow } from "../../../contexts/WindowContext";
+import api from "../../../services/api";
 
 export default function AddUser() {
   const { setShowWindow, showWindow } = useWindow();
@@ -12,8 +12,8 @@ export default function AddUser() {
     password: "",
   });
   const handleSubmit = () => {
-    axios
-      .post("http://localhost:8000/api/users/new", newUser)
+    api
+      .post("/users/new", newUser)
       .then((res) => res)
       .catch((err) => console.error(err));
     setShowWindow({

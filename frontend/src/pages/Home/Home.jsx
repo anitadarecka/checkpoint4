@@ -1,16 +1,15 @@
 import Draggable from "react-draggable";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Home.css";
 import windowItems from "../../components/Window/windowItems";
 import Navbar from "../../components/Navbar/Navbar";
 import Window from "../../components/Window/Window";
-import music from "../../assets/vinyl.png";
-import notes from "../../assets/notes.png";
 import Popup from "../../components/Popups/Popup";
 import { useWindow } from "../../contexts/WindowContext";
+import icons from "./icons";
 
 export default function Home() {
   const { user } = useAuth();
@@ -20,8 +19,8 @@ export default function Home() {
   const { showWindow, setShowWindow } = useWindow();
   useEffect(() => {
     if (user.data) {
-      axios
-        .get("http://localhost:8000/api/users/me", { withCredentials: true })
+      api
+        .get("/users/me", { withCredentials: true })
         .then((res) => setMe(res.data[0]))
         .catch((err) => console.error(err));
     } else {
@@ -41,36 +40,26 @@ export default function Home() {
   };
   return (
     <div className="home__page">
-      <Draggable>
-        <div
-          className="home__icons music"
-          role="presentation"
-          onClick={() =>
-            setShowWindow({
-              ...showWindow,
-              Music: { show: true },
-            })
-          }
-        >
-          <img src={music} alt="music" className="home__icon" />
-          My Music
-        </div>
-      </Draggable>
-      <Draggable>
-        <div
-          className="home__icons notes"
-          role="presentation"
-          onClick={() =>
-            setShowWindow({
-              ...showWindow,
-              Notes: { show: true },
-            })
-          }
-        >
-          <img src={notes} alt="notes" className="home__icon" />
-          Notes
-        </div>
-      </Draggable>
+      {icons &&
+        icons.map((el) => (
+          <Draggable>
+            <div
+              key={el.id}
+              className="home__icons"
+              style={{ left: `${el.position.x}px`, top: `${el.position.y}px` }}
+              role="presentation"
+              onClick={() =>
+                setShowWindow({
+                  ...showWindow,
+                  [el.title]: { show: true },
+                })
+              }
+            >
+              <img src={el.image} alt={el.subject} className="home__icon" />
+              {el.title}
+            </div>
+          </Draggable>
+        ))}
       {me && <Navbar me={me} setShowPopup={setShowPopup} />}
       {windowItems &&
         windowItems.map((el, index) => {

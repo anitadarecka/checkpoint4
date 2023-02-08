@@ -4,6 +4,7 @@ import About from "../../pages/Windows/About";
 import Notes from "../../pages/Windows/Notes/Notes";
 import { useWindow } from "../../contexts/WindowContext";
 import AddUser from "../../pages/Windows/Add user/AddUser";
+import Music from "../../pages/Windows/Music/Music";
 
 export default function Window({ content, setWindow }) {
   const { showWindow, setShowWindow } = useWindow();
@@ -33,6 +34,7 @@ export default function Window({ content, setWindow }) {
         {content === "About" && <About />}
         {content === "Notes" && <Notes content={content} />}
         {content === "Add_user" && <AddUser />}
+        {content === "Music" && <Music />}
       </div>
     </>
   );

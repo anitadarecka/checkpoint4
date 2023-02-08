@@ -1,56 +1,78 @@
 import PropTypes from "prop-types";
-import axios from "axios";
+import api from "../../services/api";
 import { useWindow } from "../../contexts/WindowContext";
 
-export default function NavbarMenu({ me, setUser, setShowPopup }) {
+export default function NavbarMenu({
+  me,
+  setUser,
+  setShowPopup,
+  showMenu,
+  setShowMenu,
+}) {
   const { setShowWindow, showWindow } = useWindow();
   const navbarItems = [
     {
       id: 1,
       item: "About",
+      title: "About",
       navigate: "",
       permissions: "guest",
+      handle: () => {
+        setShowWindow({
+          ...showWindow,
+          About: { show: true },
+        });
+        setShowMenu(!showMenu);
+      },
     },
     {
       id: 2,
       item: "Edit_user",
+      title: "Edit user",
       navigate: "",
       permissions: "guest",
     },
     {
       id: 4,
       item: "Add_user",
+      title: "Add user",
       navigate: "",
       permissions: "admin",
-      handle: () =>
+      handle: () => {
         setShowWindow({
           ...showWindow,
           Add_user: { show: true },
-        }),
+        });
+        setShowMenu(!showMenu);
+      },
     },
     {
       id: 5,
       item: "Delete_user",
+      title: "Delete user",
       navigate: "",
       permissions: "guest",
       handle: () => {
         setShowPopup(true);
+        setShowMenu(!showMenu);
       },
     },
     {
       id: 3,
       item: "Settings",
+      title: "Settings",
       navigate: "",
       permissions: "admin",
     },
     {
       id: 6,
       item: "Logout",
+      title: "Logout",
       navigate: "/",
       permissions: "guest",
       handle: () => {
-        axios
-          .get("http://localhost:8000/api/users/logout", {
+        api
+          .get("/users/logout", {
             withCredentials: true,
           })
           .then(() => {
@@ -76,7 +98,7 @@ export default function NavbarMenu({ me, setUser, setShowPopup }) {
             className="menu__item"
             onClick={() => handle(el.item, el.handle)}
           >
-            {el.item}
+            {el.title}
           </div>
         ))}
     </div>
@@ -87,6 +109,8 @@ NavbarMenu.propTypes = {
   me: PropTypes.shape({
     role: PropTypes.string.isRequired,
   }).isRequired,
-  setUser: PropTypes.func.isRequired,
+  setShowMenu: PropTypes.func.isRequired,
   setShowPopup: PropTypes.func.isRequired,
+  setUser: PropTypes.func.isRequired,
+  showMenu: PropTypes.func.isRequired,
 };

@@ -1,13 +1,13 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashCan, faPen } from "@fortawesome/free-solid-svg-icons";
+import api from "../../../services/api";
 
 export default function Note({ id, time, content, getNotes }) {
   const deleteNote = () => {
-    axios
-      .delete(`http://localhost:8000/api/notes/${id}`, {
+    api
+      .delete(`/notes/${id}`, {
         withCredentials: true,
       })
       .then((res) => res)
@@ -20,8 +20,8 @@ export default function Note({ id, time, content, getNotes }) {
   });
   const [editMode, setEditMode] = useState(false);
   const editNote = () => {
-    axios
-      .put(`http://localhost:8000/api/notes/${id}`, currentNote, {
+    api
+      .put(`/notes/${id}`, currentNote, {
         withCredentials: true,
       })
       .then((res) => res)

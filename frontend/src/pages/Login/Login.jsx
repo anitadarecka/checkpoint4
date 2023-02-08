@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -11,6 +10,7 @@ import {
 import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
 import { useAuth } from "../../contexts/AuthContext";
 import User from "../../components/User";
+import api from "../../services/api";
 
 export default function Login() {
   const navigate = useNavigate();
@@ -18,19 +18,28 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [payload, setPayload] = useState({ username: "", password: "" });
   const [response, setResponse] = useState({ msg: "", error: "" });
-  const { login } = useAuth();
+  const { login, setSpotifyToken } = useAuth();
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/users/")
-      .then((res) => setUsers(res.data));
+    const { hash } = window.location;
+    if (hash) {
+      const token = hash
+        .substring(1)
+        .split("&")
+        .find((el) => el.startsWith("access_token"))
+        .split("=")[1];
+      setSpotifyToken(token);
+    }
+  }, []);
+  useEffect(() => {
+    api.get("/users/").then((res) => setUsers(res.data));
   }, []);
   const handleChange = (e) => {
     setPayload({ ...payload, password: e.target.value });
     setResponse({ msg: "", error: "" });
   };
   const handleLogin = () => {
-    axios
-      .post("http://localhost:8000/api/users/login", payload, {
+    api
+      .post("/users/login", payload, {
         withCredentials: true,
       })
       .then((result) => {

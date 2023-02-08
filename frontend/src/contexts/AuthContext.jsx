@@ -30,12 +30,32 @@ export function AuthProvider({ children }) {
   useEffect(() => {
     if (user.data) {
       window.localStorage.setItem("user", JSON.stringify(user.data));
-      // navigate("/home");
+      navigate("/home");
     }
   }, [user]);
 
+  const [spotifyToken, setSpotifyToken] = useState();
+
+  useEffect(() => {
+    if (spotifyToken) {
+      window.localStorage.setItem("spotifyToken", spotifyToken);
+    }
+  }, [spotifyToken]);
+
+  useEffect(() => {
+    const token = window.localStorage.getItem("spotifyToken");
+
+    if (token.length > 1) {
+      setSpotifyToken(token);
+    }
+  }, []);
+
   return (
-    <Provider value={{ login, logout, user, setUser }}>{children}</Provider>
+    <Provider
+      value={{ login, logout, user, setUser, spotifyToken, setSpotifyToken }}
+    >
+      {children}
+    </Provider>
   );
 }
 

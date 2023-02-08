@@ -1,22 +1,20 @@
 import PropTypes from "prop-types";
-import axios from "axios";
+import api from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Popup.css";
 
 export default function Popup({ content, setShowPopup, role, id }) {
   const { setUser } = useAuth();
   const handleDelete = () => {
-    axios
-      .get("http://localhost:8000/api/users/logout", {
+    api
+      .get("/users/logout", {
         withCredentials: true,
       })
       .then(() => {
         window.localStorage.removeItem("user");
       })
       .then(() => {
-        axios
-          .delete(`http://localhost:8000/api/users/${id}`)
-          .then((res) => res);
+        api.delete(`/users/${id}`).then((res) => res);
       })
       .then(() => setUser({ data: null }))
       .catch((err) => console.error(err));

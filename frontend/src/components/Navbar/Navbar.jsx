@@ -41,7 +41,13 @@ export default function Navbar({ me, setShowPopup }) {
       </div>
       {showMenu && (
         <div className="navbar__menu">
-          <NavbarMenu me={me} setUser={setUser} setShowPopup={setShowPopup} />
+          <NavbarMenu
+            me={me}
+            setUser={setUser}
+            setShowPopup={setShowPopup}
+            showMenu={showMenu}
+            setShowMenu={setShowMenu}
+          />
         </div>
       )}
     </div>

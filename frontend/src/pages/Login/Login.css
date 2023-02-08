@@ -61,7 +61,7 @@
   border: none;
   position: absolute;
   right: 5px;
-  top: 0.75rem;
+  top: 0.65rem;
   color: var(--eerie-black);
   animation-name: appear;
   animation-duration: 1s;

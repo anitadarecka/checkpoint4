@@ -60,14 +60,17 @@ a:link {
 
 a:visited {
   text-decoration: none;
+  color: var(--dark-lava);
 }
 
 a:hover {
-  text-decoration: none;
+  text-decoration: underline;
+  color: var(--dark-lava);
 }
 
 a:active {
   text-decoration: none;
+  color: var(--dark-lava);
 }
 
 div[role="presentation"] {

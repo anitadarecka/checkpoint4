@@ -19,6 +19,19 @@
   padding: 0 10px;
 }
 
+/* .window__buttons {
+  border: 1.5px solid var(--eerie-black);
+  border-radius: 1rem;
+  height: 1rem;
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 2px;
+  box-shadow: 0.5px 0.5px 0px var(--dark-lava);
+  font-size: 0.9rem;
+} */
+
 .window__content {
   overflow: auto;
   height: calc(45vh - 2rem);
