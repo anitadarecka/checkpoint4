@@ -1,6 +1,7 @@
 import Draggable from "react-draggable";
 import { useRef, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import SpotifyPlayer from "react-spotify-web-playback";
 import api from "../../services/api";
 import { useAuth } from "../../contexts/AuthContext";
 import "./Home.css";
@@ -40,6 +41,23 @@ export default function Home() {
   };
   return (
     <div className="home__page">
+      <SpotifyPlayer
+        token="
+BQB8L_pNX9vPswY_nl7TxegFjN8eaZir0qik9Vz689m-87oPJa4_F32zS5glO7325bU4cyc8jOnXhiHK1gtTpy7REpvDjCm60akx6rvrqRT1VZxC3T-78c5potGEJJbYFFARSGn21Gd7xXypurN2srxcdBYe6Hu1n7FM6UznfVnxEv4UyhL-q9up2QtVGZU9"
+        uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
+        autoPlay
+        play
+        showSaveIcon
+        styles={{
+          activeColor: "#fff",
+          bgColor: "#333",
+          color: "#fff",
+          loaderColor: "#fff",
+          sliderColor: "#1cb954",
+          trackArtistColor: "#ccc",
+          trackNameColor: "#fff",
+        }}
+      />
       {icons &&
         icons.map((el) => (
           <Draggable>

@@ -1,4 +1,4 @@
-import SpotifyWebPlayer from "react-spotify-web-playback";
+import SpotifyPlayer from "react-spotify-web-playback";
 import { useAuth } from "../../../contexts/AuthContext";
 
 export default function Music() {
@@ -17,10 +17,10 @@ export default function Music() {
         </a>
       ) : (
         <div>
-          <SpotifyWebPlayer
+          <SpotifyPlayer
             token="
 BQB8L_pNX9vPswY_nl7TxegFjN8eaZir0qik9Vz689m-87oPJa4_F32zS5glO7325bU4cyc8jOnXhiHK1gtTpy7REpvDjCm60akx6rvrqRT1VZxC3T-78c5potGEJJbYFFARSGn21Gd7xXypurN2srxcdBYe6Hu1n7FM6UznfVnxEv4UyhL-q9up2QtVGZU9"
-            uris="spotify:track:4Dvkj6JhhA12EX05fT7y2e"
+            uris={["spotify:artist:6HQYnRM4OzToCYPpVBInuU"]}
             autoPlay
             play
             showSaveIcon
